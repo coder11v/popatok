@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Pop A Tok</title>
+  <style>
+    body {
+      margin: 0;
+      background: #0d0d0d;
+      font-family: Arial, sans-serif;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    #gate {
+      text-align: center;
+    }
+
+    #gate input {
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 6px;
+      border: none;
+      outline: none;
+    }
+
+    #gate button {
+      padding: 10px 20px;
+      margin-left: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 6px;
+      border: none;
+      background: #4CAF50;
+      color: white;
+    }
+
+    #appContainer {
+      display: none;
+    }
+
+    iframe {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      border: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      z-index: 9999;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="gate">
+    <h2>Enter the Password</h2>
+    <input type="password" id="pwInput" placeholder="Password" />
+    <button onclick="checkPW()">Enter</button>
+    <p id="msg" style="color: red; margin-top: 10px;"></p>
+  </div>
+
+  <div id="appContainer">
+    <iframe src="https://popatokbanana.streamlit.app?embed=true"></iframe>
+  </div>
+
+  <script>
+    function checkPW() {
+      const input = document.getElementById('pwInput').value;
+      const msg = document.getElementById('msg');
+
+      if (input === 'sasquatch') {
+        document.getElementById('gate').style.display = 'none';
+        document.getElementById('appContainer').style.display = 'block';
+      } else {
+        msg.textContent = 'Incorrect password. Try again.';
+      }
+    }
+  </script>
+
+  <footer style="position: fixed; bottom: 10px; width: 100%; text-align: center; color: #888; font-size: 14px; letter-spacing: 0.5px;">
+    © Credit: Veer Bajaj, John Knowles, Alex Guerrero Moragan
+  </footer>
+
+</body>
+</html>
