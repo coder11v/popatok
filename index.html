@@ -55,6 +55,31 @@
       z-index: 9999;
     }
   </style>
+  <link rel="icon" id="dyn-favicon" href="">
+  <script>
+    const icons = ["👦🏻", "👦🏼", "⚽", "🎲", "☀️", "🌑"];
+    const link = document.getElementById("dyn-favicon");
+
+    function svgIcon(emoji) {
+      return `
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+          <text y=".9em" font-size="90">${emoji}</text>
+        </svg>
+      `.trim();
+    }
+
+    let index = 0;
+
+    function updateFavicon() {
+      const svg = svgIcon(icons[index]);
+      link.href = "data:image/svg+xml," + encodeURIComponent(svg);
+      index = (index + 1) % icons.length;
+    }
+
+    // Change immediately, then every 3 seconds
+    updateFavicon();
+    setInterval(updateFavicon, 3000);
+  </script>
 </head>
 <body>
 
@@ -88,12 +113,10 @@
     }
   </script>
 
-  <footer style="position: fixed; bottom: 10px; width: 100%; text-align: center; color: #888; font-size: 14px; letter-spacing: 0.5px;">
-    © Credit: Veer Bajaj, John Knowles, and Alex Guerrero-Morgan
-  </footer>
-  <footer style="position: fixed; bottom: 10px; width: 100%; text-align: center; color: #888; font-size: 14px; letter-spacing: 0.5px;">
-    With credit to Drew Schonbrun for playtesting
-  </footer>
+<div style="position: fixed; bottom: 10px; width: 100%; display: flex; flex-direction: column; align-items: center; gap: 5px; color: #888; font-size: 14px; letter-spacing: 0.5px;">
+  <div>© Credit: Veer Bajaj, John Knowles, and Alex Guerrero-Morgan</div>
+  <div>With credit to Drew Schonbrun for playtesting</div>
+</div>
 
 </body>
 </html>
