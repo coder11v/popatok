@@ -542,7 +542,7 @@
     function updateFavicon() {
       const svg = svgIcon(icons[index]);
       link.href = "data:image/svg+xml," + encodeURIComponent(svg);
-      index = (index + 1) % icons.index;
+      index = (index + 1) % icons.length;
     }
     updateFavicon();
     setInterval(updateFavicon, 3000);
