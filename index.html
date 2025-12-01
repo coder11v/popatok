@@ -2,44 +2,175 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <title>Pop A Tok</title>
+  <title>Popol Vuh: The Ballgame</title>
   <style>
-    body {
+    * {
       margin: 0;
-      background: #0d0d0d;
-      font-family: Arial, sans-serif;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 50%, #0d0d0d 100%);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       color: white;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Animated background */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(76, 175, 80, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(76, 175, 80, 0.05) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 1;
     }
 
     #gate {
       text-align: center;
+      padding: 50px;
+      background: linear-gradient(135deg, rgba(26, 26, 26, 0.95) 0%, rgba(13, 13, 13, 0.95) 100%);
+      border-radius: 20px;
+      border: 2px solid #4CAF50;
+      box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.8),
+        inset 0 1px 0 rgba(76, 175, 80, 0.2),
+        0 0 40px rgba(76, 175, 80, 0.15);
+      max-width: 450px;
+      z-index: 100;
+      position: relative;
+      backdrop-filter: blur(10px);
+      animation: slideUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    #gate h2 {
+      margin-bottom: 30px;
+      color: #4CAF50;
+      font-size: 32px;
+      letter-spacing: 2px;
+      font-weight: 700;
+      text-shadow: 0 0 20px rgba(76, 175, 80, 0.3);
+      background: linear-gradient(135deg, #4CAF50, #66BB6A);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     #gate input {
-      padding: 10px;
+      padding: 14px 18px;
       font-size: 16px;
-      border-radius: 6px;
-      border: none;
+      border-radius: 10px;
+      border: 2px solid #333;
       outline: none;
+      background: rgba(26, 26, 26, 0.8);
+      color: white;
+      width: 100%;
+      margin-bottom: 20px;
+      transition: all 0.3s ease;
+      font-weight: 500;
+      letter-spacing: 2px;
+    }
+
+    #gate input:focus {
+      border-color: #4CAF50;
+      box-shadow: 
+        0 0 20px rgba(76, 175, 80, 0.4),
+        inset 0 0 10px rgba(76, 175, 80, 0.1);
+      background: rgba(26, 26, 26, 1);
+      transform: translateY(-2px);
     }
 
     #gate button {
-      padding: 10px 20px;
-      margin-left: 10px;
-      font-size: 16px;
+      padding: 14px 40px;
+      font-size: 18px;
       cursor: pointer;
-      border-radius: 6px;
+      border-radius: 10px;
       border: none;
-      background: #4CAF50;
+      background: linear-gradient(135deg, #4CAF50, #66BB6A);
       color: white;
+      width: 100%;
+      font-weight: 700;
+      transition: all 0.3s ease;
+      box-shadow: 
+        0 8px 25px rgba(76, 175, 80, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #gate button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s ease;
+    }
+
+    #gate button:hover::before {
+      left: 100%;
+    }
+
+    #gate button:hover {
+      background: linear-gradient(135deg, #45a049, #5db05a);
+      transform: translateY(-3px);
+      box-shadow: 
+        0 12px 35px rgba(76, 175, 80, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    }
+
+    #gate button:active {
+      transform: translateY(-1px);
+      box-shadow: 
+        0 4px 15px rgba(76, 175, 80, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+
+    #msg {
+      color: #ff6b6b;
+      margin-top: 15px;
+      font-size: 14px;
+      animation: shake 0.5s ease;
+      font-weight: 600;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      75% { transform: translateX(5px); }
     }
 
     #appContainer {
       display: none;
+      position: relative;
+      width: 100%;
+      height: 100%;
     }
 
     iframe {
@@ -54,12 +185,352 @@
       overflow: hidden;
       z-index: 9999;
     }
+
+    #footerOverlay {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 80px;
+      background: #0d0d0d;
+      z-index: 10002;
+      pointer-events: none;
+    }
+
+    #aboutBtn {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      background: linear-gradient(135deg, #4CAF50, #66BB6A);
+      color: white;
+      border: none;
+      padding: 14px 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      z-index: 10001;
+      display: none;
+      font-weight: 700;
+      transition: all 0.3s ease;
+      box-shadow: 
+        0 8px 25px rgba(76, 175, 80, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    #aboutBtn:hover {
+      background: linear-gradient(135deg, #45a049, #5db05a);
+      transform: translateY(-3px);
+      box-shadow: 
+        0 12px 35px rgba(76, 175, 80, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    }
+
+    #aboutBtn:active {
+      transform: translateY(-1px);
+    }
+
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 10005;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.85);
+      overflow-y: auto;
+      backdrop-filter: blur(5px);
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .modal-content {
+      background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+      margin: 5% auto;
+      padding: 50px;
+      border: 2px solid #4CAF50;
+      border-radius: 20px;
+      width: 90%;
+      max-width: 750px;
+      color: #e0e0e0;
+      line-height: 1.9;
+      box-shadow: 
+        0 25px 70px rgba(0, 0, 0, 0.95),
+        0 0 40px rgba(76, 175, 80, 0.2),
+        inset 0 1px 0 rgba(76, 175, 80, 0.1);
+      animation: slideInScale 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    @keyframes slideInScale {
+      from {
+        opacity: 0;
+        transform: scale(0.95) translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 35px;
+      border-bottom: 3px solid #4CAF50;
+      padding-bottom: 25px;
+    }
+
+    .modal-header h2 {
+      margin: 0;
+      color: #4CAF50;
+      font-size: 32px;
+      letter-spacing: 2px;
+      font-weight: 700;
+      text-shadow: 0 0 20px rgba(76, 175, 80, 0.3);
+    }
+
+    .close-btn {
+      color: #888;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .close-btn:hover {
+      color: #4CAF50;
+      background: rgba(76, 175, 80, 0.15);
+      transform: rotate(90deg);
+    }
+
+    .about-section {
+      margin-bottom: 35px;
+      padding: 25px;
+      background: linear-gradient(135deg, rgba(76, 175, 80, 0.1) 0%, rgba(76, 175, 80, 0.05) 100%);
+      border-left: 5px solid #4CAF50;
+      border-radius: 10px;
+      backdrop-filter: blur(5px);
+    }
+
+    .about-section:last-child {
+      margin-bottom: 0;
+    }
+
+    .about-section h3 {
+      color: #66BB6A;
+      margin-top: 0;
+      margin-bottom: 15px;
+      font-size: 16px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 700;
+    }
+
+    .about-section p {
+      margin: 12px 0;
+      color: #d0d0d0;
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    .about-section a {
+      color: #66BB6A;
+      text-decoration: none;
+      border-bottom: 2px solid #4CAF50;
+      transition: all 0.3s ease;
+      font-weight: 600;
+    }
+
+    .about-section a:hover {
+      color: #4CAF50;
+      border-bottom-color: #66BB6A;
+    }
+
+    .about-section strong {
+      color: #fff;
+      font-weight: 700;
+    }
+
+    /* Disclaimer Modal */
+    #disclaimerModal {
+      display: none;
+      position: fixed;
+      z-index: 10010;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.95);
+      overflow-y: auto;
+      backdrop-filter: blur(8px);
+    }
+
+    .disclaimer-content {
+      background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+      margin: 5% auto;
+      padding: 50px;
+      border: 3px solid #4CAF50;
+      border-radius: 20px;
+      width: 90%;
+      max-width: 800px;
+      color: #e0e0e0;
+      line-height: 1.9;
+      box-shadow: 
+        0 25px 70px rgba(0, 0, 0, 0.95),
+        0 0 50px rgba(76, 175, 80, 0.3),
+        inset 0 1px 0 rgba(76, 175, 80, 0.2);
+      animation: slideInScale 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .disclaimer-header {
+      text-align: center;
+      margin-bottom: 40px;
+      padding-bottom: 30px;
+      border-bottom: 3px solid #4CAF50;
+    }
+
+    .disclaimer-header h1 {
+      margin: 0;
+      color: #4CAF50;
+      font-size: 36px;
+      letter-spacing: 2px;
+      font-weight: 700;
+      text-shadow: 0 0 20px rgba(76, 175, 80, 0.3);
+      margin-bottom: 15px;
+    }
+
+    .disclaimer-header p {
+      color: #aaa;
+      font-size: 16px;
+      margin: 0;
+      letter-spacing: 0.5px;
+    }
+
+    .disclaimer-body {
+      margin-bottom: 35px;
+      max-height: 300px;
+      overflow-y: auto;
+      padding-right: 15px;
+    }
+
+    .disclaimer-body::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .disclaimer-body::-webkit-scrollbar-track {
+      background: rgba(76, 175, 80, 0.05);
+      border-radius: 10px;
+    }
+
+    .disclaimer-body::-webkit-scrollbar-thumb {
+      background: #4CAF50;
+      border-radius: 10px;
+    }
+
+    .disclaimer-body::-webkit-scrollbar-thumb:hover {
+      background: #66BB6A;
+    }
+
+    .disclaimer-section {
+      margin-bottom: 25px;
+    }
+
+    .disclaimer-section h3 {
+      color: #66BB6A;
+      font-size: 16px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin: 0 0 10px 0;
+      font-weight: 700;
+    }
+
+    .disclaimer-section p {
+      margin: 8px 0;
+      color: #d0d0d0;
+      font-size: 14px;
+    }
+
+    .disclaimer-buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .disclaimer-btn {
+      padding: 14px 30px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 10px;
+      border: none;
+      font-weight: 700;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      flex: 1;
+      min-width: 150px;
+    }
+
+    #acceptBtn {
+      background: linear-gradient(135deg, #4CAF50, #66BB6A);
+      color: white;
+      box-shadow: 
+        0 8px 25px rgba(76, 175, 80, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+
+    #acceptBtn:hover {
+      background: linear-gradient(135deg, #45a049, #5db05a);
+      transform: translateY(-3px);
+      box-shadow: 
+        0 12px 35px rgba(76, 175, 80, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    }
+
+    #acceptBtn:active {
+      transform: translateY(-1px);
+    }
+
+    .credit-footer {
+      position: fixed;
+      bottom: 10px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+      color: #666;
+      font-size: 12px;
+      letter-spacing: 0.5px;
+      pointer-events: none;
+      z-index: 100;
+    }
+
+    .credit-footer div {
+      pointer-events: auto;
+    }
   </style>
   <link rel="icon" id="dyn-favicon" href="">
   <script>
     const icons = ["👦🏻", "👦🏼", "⚽", "🎲", "☀️", "🌑"];
     const link = document.getElementById("dyn-favicon");
-
     function svgIcon(emoji) {
       return `
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
@@ -67,56 +538,163 @@
         </svg>
       `.trim();
     }
-
     let index = 0;
-
     function updateFavicon() {
       const svg = svgIcon(icons[index]);
       link.href = "data:image/svg+xml," + encodeURIComponent(svg);
-      index = (index + 1) % icons.length;
+      index = (index + 1) % icons.index;
     }
-
-    // Change immediately, then every 3 seconds
     updateFavicon();
     setInterval(updateFavicon, 3000);
   </script>
 </head>
 <body>
+  <!-- Disclaimer Modal (MUST BE READ FIRST) -->
+  <div id="disclaimerModal">
+    <div class="disclaimer-content">
+      <div class="disclaimer-header">
+        <h1>📖 Credits & Disclaimer</h1>
+        <p>Please read before proceeding</p>
+      </div>
+
+      <div class="disclaimer-body">
+        <div class="disclaimer-section">
+          <h3>⭐ Created By:</h3>
+          <p><strong>Veer Bajaj, John Knowles, and Alex Guerrero-Morgan</strong></p>
+          <p>With special thanks to <strong>Drew Schonbrun</strong> for helping us test and improve this adventure.</p>
+        </div>
+
+        <div class="disclaimer-section">
+          <h3>🛠️ How We Built This:</h3>
+          <p>This interactive story was brought to life using <strong>Google Gemini's AI technology</strong> to power the "listen to the earth" features, allowing the story to respond naturally to your choices. The entire experience runs on <strong>Streamlit</strong>, a powerful platform that lets us host interactive web applications easily.</p>
+        </div>
+
+        <div class="disclaimer-section">
+          <h3>📚 Educational Context:</h3>
+          <p>This project brings the ancient <strong>Popol Vuh myth</strong> to life as an interactive adventure, completed for Mr. Borrowman's class assignment on the Popol Vuh Twins and the sacred ball game of Pok-a-Tok (November 17th assignment).</p>
+        </div>
+
+        <div class="disclaimer-section">
+          <h3>🎮 About the Experience:</h3>
+          <p>This is an interactive educational adventure inspired by Mesoamerican mythology. Your choices matter as you navigate the story. Enjoy the journey and embrace the mystery of the ancient tales.</p>
+        </div>
+      </div>
+
+      <div class="disclaimer-buttons">
+        <button class="disclaimer-btn" id="acceptBtn" onclick="acceptDisclaimer()">✓ I Understand & Accept</button>
+      </div>
+    </div>
+  </div>
 
   <div id="gate">
-    <h2>Enter the Password</h2>
-    <input type="password" id="pwInput" placeholder="Password" />
-    <button onclick="checkPW()">Enter</button>
-    <p id="msg" style="color: red; margin-top: 10px;"></p>
+    <h2>⚽ Pop A Tok</h2>
+    <input type="password" id="pwInput" placeholder="Enter access code..." />
+    <button onclick="checkPW()">▶ Play</button>
+    <p id="msg"></p>
   </div>
-
+  
   <div id="appContainer">
+    <button id="aboutBtn" onclick="openAbout()">📖 About This Story</button>
     <iframe 
-    src="https://popatokbanana.streamlit.app?embed=true"
-    allow="autoplay; camera; microphone; fullscreen; geolocation; accelerometer; gyroscope; magnetometer; payment; usb; encrypted-media; picture-in-picture; display-capture; clipboard-read; clipboard-write"
-    allowfullscreen
-    allowpaymentrequest>
-</iframe>
+      src="https://popatokbanana.streamlit.app/?embed_options=dark_theme&embed=true"
+      allow="autoplay; camera; microphone; fullscreen; geolocation; accelerometer; gyroscope; magnetometer; payment; usb; encrypted-media; picture-in-picture; display-capture; clipboard-read; clipboard-write"
+      allowfullscreen
+      allowpaymentrequest>
+    </iframe>
+    <div id="footerOverlay"></div>
   </div>
+  
+  <!-- About Modal -->
+  <div id="aboutModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>📖 About This Story</h2>
+        <button class="close-btn" onclick="closeAbout()">&times;</button>
+      </div>
+      
+      <div class="about-section">
+        <h3>⭐ Created By:</h3>
+        <p><strong>Veer Bajaj, John Knowles, and Alex Guerrero-Morgan</strong></p>
+        <p style="font-size: 14px; margin-top: 15px;">With special thanks to Drew Schonbrun for helping us test and improve this adventure.</p>
+      </div>
+      
+      <div class="about-section">
+        <h3>🛠️ How We Built This:</h3>
+        <p>This interactive story was brought to life using Google Gemini's AI technology to power the "listen to the earth" features, allowing the story to respond naturally to your choices. The entire experience runs on Streamlit, a powerful platform that lets us host interactive web applications easily.</p>
+      </div>
 
+      <div class="about-section">
+        <h3>📚 For Mr. Borrowman's Class:</h3>
+        <p>This project brings the ancient Popol Vuh myth to life as an interactive adventure, completed for the November 17th assignment on the Popol Vuh Twins and the sacred ball game of Pok-a-Tok.</p>
+        <p style="margin-top: 15px;">
+          📌 <a href="https://yorkschool.instructure.com/courses/602/assignments/27574" target="_blank">View the original assignment here</a>
+        </p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="credit-footer">
+    <div>© Credit: Veer Bajaj, John Knowles, and Alex Guerrero-Morgan</div>
+    <div>With credit to Drew Schonbrun for playtesting</div>
+  </div>
+  
   <script>
+    // Check if disclaimer has been accepted
+    function checkDisclaimerAccepted() {
+      return localStorage.getItem('disclaimerAccepted') === 'true';
+    }
+
+    // Accept disclaimer and hide modal
+    function acceptDisclaimer() {
+      localStorage.setItem('disclaimerAccepted', 'true');
+      document.getElementById('disclaimerModal').style.display = 'none';
+    }
+
+    // Show disclaimer on page load if not accepted before
+    window.addEventListener('load', function() {
+      if (!checkDisclaimerAccepted()) {
+        document.getElementById('disclaimerModal').style.display = 'block';
+      }
+    });
+
     function checkPW() {
       const input = document.getElementById('pwInput').value;
       const msg = document.getElementById('msg');
-
       if (input === '2030') {
         document.getElementById('gate').style.display = 'none';
         document.getElementById('appContainer').style.display = 'block';
+        document.getElementById('aboutBtn').style.display = 'block';
       } else {
-        msg.textContent = 'Incorrect password. Try again.';
+        msg.textContent = '✗ Incorrect password. Try again.';
+        msg.style.animation = 'none';
+        setTimeout(() => {
+          msg.style.animation = 'shake 0.5s ease';
+        }, 10);
       }
     }
+    
+    function openAbout() {
+      document.getElementById('aboutModal').style.display = 'block';
+    }
+    
+    function closeAbout() {
+      document.getElementById('aboutModal').style.display = 'none';
+    }
+    
+    // Close modal when clicking outside of it
+    window.onclick = function(event) {
+      const aboutModal = document.getElementById('aboutModal');
+      if (event.target == aboutModal) {
+        aboutModal.style.display = 'none';
+      }
+    }
+    
+    // Allow Enter key for password
+    document.getElementById('pwInput').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        checkPW();
+      }
+    });
   </script>
-
-<div style="position: fixed; bottom: 10px; width: 100%; display: flex; flex-direction: column; align-items: center; gap: 5px; color: #888; font-size: 14px; letter-spacing: 0.5px;">
-  <div>© Credit: Veer Bajaj, John Knowles, and Alex Guerrero-Morgan</div>
-  <div>With credit to Drew Schonbrun for playtesting</div>
-</div>
-
 </body>
 </html>
