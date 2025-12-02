@@ -1,5 +1,6 @@
 <!doctype html>
 <html>
+
 <head>
   <meta charset="utf-8" />
   <title>Popol Vuh: The Ballgame</title>
@@ -30,7 +31,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: 
+      background:
         radial-gradient(circle at 20% 50%, rgba(76, 175, 80, 0.1) 0%, transparent 50%),
         radial-gradient(circle at 80% 80%, rgba(76, 175, 80, 0.05) 0%, transparent 50%);
       pointer-events: none;
@@ -43,7 +44,7 @@
       background: linear-gradient(135deg, rgba(26, 26, 26, 0.95) 0%, rgba(13, 13, 13, 0.95) 100%);
       border-radius: 20px;
       border: 2px solid #4CAF50;
-      box-shadow: 
+      box-shadow:
         0 20px 60px rgba(0, 0, 0, 0.8),
         inset 0 1px 0 rgba(76, 175, 80, 0.2),
         0 0 40px rgba(76, 175, 80, 0.15);
@@ -59,6 +60,7 @@
         opacity: 0;
         transform: translateY(30px);
       }
+
       to {
         opacity: 1;
         transform: translateY(0);
@@ -95,7 +97,7 @@
 
     #gate input:focus {
       border-color: #4CAF50;
-      box-shadow: 
+      box-shadow:
         0 0 20px rgba(76, 175, 80, 0.4),
         inset 0 0 10px rgba(76, 175, 80, 0.1);
       background: rgba(26, 26, 26, 1);
@@ -113,7 +115,7 @@
       width: 100%;
       font-weight: 700;
       transition: all 0.3s ease;
-      box-shadow: 
+      box-shadow:
         0 8px 25px rgba(76, 175, 80, 0.4),
         inset 0 1px 0 rgba(255, 255, 255, 0.2);
       text-transform: uppercase;
@@ -140,14 +142,14 @@
     #gate button:hover {
       background: linear-gradient(135deg, #45a049, #5db05a);
       transform: translateY(-3px);
-      box-shadow: 
+      box-shadow:
         0 12px 35px rgba(76, 175, 80, 0.5),
         inset 0 1px 0 rgba(255, 255, 255, 0.3);
     }
 
     #gate button:active {
       transform: translateY(-1px);
-      box-shadow: 
+      box-shadow:
         0 4px 15px rgba(76, 175, 80, 0.4),
         inset 0 1px 0 rgba(255, 255, 255, 0.2);
     }
@@ -161,9 +163,19 @@
     }
 
     @keyframes shake {
-      0%, 100% { transform: translateX(0); }
-      25% { transform: translateX(-5px); }
-      75% { transform: translateX(5px); }
+
+      0%,
+      100% {
+        transform: translateX(0);
+      }
+
+      25% {
+        transform: translateX(-5px);
+      }
+
+      75% {
+        transform: translateX(5px);
+      }
     }
 
     #appContainer {
@@ -212,7 +224,7 @@
       display: none;
       font-weight: 700;
       transition: all 0.3s ease;
-      box-shadow: 
+      box-shadow:
         0 8px 25px rgba(76, 175, 80, 0.4),
         inset 0 1px 0 rgba(255, 255, 255, 0.2);
       text-transform: uppercase;
@@ -222,7 +234,7 @@
     #aboutBtn:hover {
       background: linear-gradient(135deg, #45a049, #5db05a);
       transform: translateY(-3px);
-      box-shadow: 
+      box-shadow:
         0 12px 35px rgba(76, 175, 80, 0.5),
         inset 0 1px 0 rgba(255, 255, 255, 0.3);
     }
@@ -247,8 +259,13 @@
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
     }
 
     .modal-content {
@@ -261,7 +278,7 @@
       max-width: 750px;
       color: #e0e0e0;
       line-height: 1.9;
-      box-shadow: 
+      box-shadow:
         0 25px 70px rgba(0, 0, 0, 0.95),
         0 0 40px rgba(76, 175, 80, 0.2),
         inset 0 1px 0 rgba(76, 175, 80, 0.1);
@@ -273,6 +290,7 @@
         opacity: 0;
         transform: scale(0.95) translateY(20px);
       }
+
       to {
         opacity: 1;
         transform: scale(1) translateY(0);
@@ -392,7 +410,7 @@
       max-width: 800px;
       color: #e0e0e0;
       line-height: 1.9;
-      box-shadow: 
+      box-shadow:
         0 25px 70px rgba(0, 0, 0, 0.95),
         0 0 50px rgba(76, 175, 80, 0.3),
         inset 0 1px 0 rgba(76, 175, 80, 0.2);
@@ -491,7 +509,7 @@
     #acceptBtn {
       background: linear-gradient(135deg, #4CAF50, #66BB6A);
       color: white;
-      box-shadow: 
+      box-shadow:
         0 8px 25px rgba(76, 175, 80, 0.4),
         inset 0 1px 0 rgba(255, 255, 255, 0.2);
     }
@@ -499,7 +517,7 @@
     #acceptBtn:hover {
       background: linear-gradient(135deg, #45a049, #5db05a);
       transform: translateY(-3px);
-      box-shadow: 
+      box-shadow:
         0 12px 35px rgba(76, 175, 80, 0.5),
         inset 0 1px 0 rgba(255, 255, 255, 0.3);
     }
@@ -526,6 +544,49 @@
     .credit-footer div {
       pointer-events: auto;
     }
+
+    /* Intro Overlay */
+    #introOverlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      z-index: 20000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #introOverlay video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    #skipBtn {
+      position: absolute;
+      bottom: 30px;
+      right: 30px;
+      padding: 10px 25px;
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      color: white;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 14px;
+      backdrop-filter: blur(5px);
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      z-index: 20001;
+    }
+
+    #skipBtn:hover {
+      background: rgba(255, 255, 255, 0.4);
+      transform: scale(1.05);
+    }
   </style>
   <link rel="icon" id="dyn-favicon" href="">
   <script>
@@ -548,7 +609,17 @@
     setInterval(updateFavicon, 3000);
   </script>
 </head>
+
 <body>
+  <!-- Intro Video Overlay -->
+  <div id="introOverlay">
+    <video id="introVideo" playsinline muted autoplay>
+      <source src="intro.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <button id="skipBtn" onclick="endIntro()">Skip Intro</button>
+  </div>
+
   <!-- Disclaimer Modal (MUST BE READ FIRST) -->
   <div id="disclaimerModal">
     <div class="disclaimer-content">
@@ -566,17 +637,23 @@
 
         <div class="disclaimer-section">
           <h3>🛠️ How We Built This:</h3>
-          <p>This interactive story was brought to life using <strong>Google Gemini's AI technology</strong> to power the "listen to the earth" features, allowing the story to respond naturally to your choices. The entire experience runs on <strong>Streamlit</strong>, a powerful platform that lets us host interactive web applications easily.</p>
+          <p>This interactive story was brought to life using <strong>Google Gemini's AI technology</strong> to power
+            the "listen to the earth" features, allowing the story to respond naturally to your choices. The entire
+            experience runs on <strong>Streamlit</strong>, a powerful platform that lets us host interactive web
+            applications easily.</p>
         </div>
 
         <div class="disclaimer-section">
           <h3>📚 Educational Context:</h3>
-          <p>This project brings the ancient <strong>Popol Vuh myth</strong> to life as an interactive adventure, completed for Mr. Borrowman's class assignment on the Popol Vuh Twins and the sacred ball game of Pok-a-Tok (November 17th assignment).</p>
+          <p>This project brings the ancient <strong>Popol Vuh myth</strong> to life as an interactive adventure,
+            completed for Mr. Borrowman's class assignment on the Popol Vuh Twins and the sacred ball game of Pok-a-Tok
+            (November 17th assignment).</p>
         </div>
 
         <div class="disclaimer-section">
           <h3>🎮 About the Experience:</h3>
-          <p>This is an interactive educational adventure inspired by Mesoamerican mythology. Your choices matter as you navigate the story. Enjoy the journey and embrace the mystery of the ancient tales.</p>
+          <p>This is an interactive educational adventure inspired by Mesoamerican mythology. Your choices matter as you
+            navigate the story. Enjoy the journey and embrace the mystery of the ancient tales.</p>
         </div>
       </div>
 
@@ -586,24 +663,22 @@
     </div>
   </div>
 
-  <div id="gate">
+  <div id="gate" style="display: none;">
     <h2>⚽ Pop A Tok</h2>
     <input type="password" id="pwInput" placeholder="Enter access code..." />
     <button onclick="checkPW()">▶ Play</button>
     <p id="msg"></p>
   </div>
-  
+
   <div id="appContainer">
     <button id="aboutBtn" onclick="openAbout()">📖 About This Story</button>
-    <iframe 
-      src="https://popatokbanana.streamlit.app/?embed_options=dark_theme&embed=true"
+    <iframe src="https://popatokbanana.streamlit.app/?embed_options=dark_theme&embed=true"
       allow="autoplay; camera; microphone; fullscreen; geolocation; accelerometer; gyroscope; magnetometer; payment; usb; encrypted-media; picture-in-picture; display-capture; clipboard-read; clipboard-write"
-      allowfullscreen
-      allowpaymentrequest>
+      allowfullscreen allowpaymentrequest>
     </iframe>
     <div id="footerOverlay"></div>
   </div>
-  
+
   <!-- About Modal -->
   <div id="aboutModal" class="modal">
     <div class="modal-content">
@@ -611,34 +686,66 @@
         <h2>📖 About This Story</h2>
         <button class="close-btn" onclick="closeAbout()">&times;</button>
       </div>
-      
+
       <div class="about-section">
         <h3>⭐ Created By:</h3>
         <p><strong>Veer Bajaj, John Knowles, and Alex Guerrero-Morgan</strong></p>
-        <p style="font-size: 14px; margin-top: 15px;">With special thanks to Drew Schonbrun for helping us test and improve this adventure.</p>
+        <p style="font-size: 14px; margin-top: 15px;">With special thanks to Drew Schonbrun for helping us test and
+          improve this adventure.</p>
       </div>
-      
+
       <div class="about-section">
         <h3>🛠️ How We Built This:</h3>
-        <p>This interactive story was brought to life using Google Gemini's AI technology to power the "listen to the earth" features, allowing the story to respond naturally to your choices. The entire experience runs on Streamlit, a powerful platform that lets us host interactive web applications easily.</p>
+        <p>This interactive story was brought to life using Google Gemini's AI technology to power the "listen to the
+          earth" features, allowing the story to respond naturally to your choices. The entire experience runs on
+          Streamlit, a powerful platform that lets us host interactive web applications easily.</p>
       </div>
 
       <div class="about-section">
         <h3>📚 For Mr. Borrowman's Class:</h3>
-        <p>This project brings the ancient Popol Vuh myth to life as an interactive adventure, completed for the November 17th assignment on the Popol Vuh Twins and the sacred ball game of Pok-a-Tok.</p>
+        <p>This project brings the ancient Popol Vuh myth to life as an interactive adventure, completed for the
+          November 17th assignment on the Popol Vuh Twins and the sacred ball game of Pok-a-Tok.</p>
         <p style="margin-top: 15px;">
-          📌 <a href="https://yorkschool.instructure.com/courses/602/assignments/27574" target="_blank">View the original assignment here</a>
+          📌 <a href="https://yorkschool.instructure.com/courses/602/assignments/27574" target="_blank">View the
+            original assignment here</a>
         </p>
       </div>
     </div>
   </div>
-  
+
   <div class="credit-footer">
     <div>© Credit: Veer Bajaj, John Knowles, and Alex Guerrero-Morgan</div>
     <div>With credit to Drew Schonbrun for playtesting</div>
   </div>
-  
+
   <script>
+    // Intro Video Logic
+    const introOverlay = document.getElementById('introOverlay');
+    const introVideo = document.getElementById('introVideo');
+
+    function endIntro() {
+      introOverlay.style.opacity = '0';
+      setTimeout(() => {
+        introOverlay.style.display = 'none';
+        introVideo.pause();
+        startApp();
+      }, 500); // Fade out duration
+    }
+
+    introVideo.addEventListener('ended', endIntro);
+
+    // Start the actual app flow
+    function startApp() {
+      if (!checkDisclaimerAccepted()) {
+        document.getElementById('disclaimerModal').style.display = 'block';
+      } else {
+        // If disclaimer accepted, show gate (or app if we had persistent login, but here we just show gate)
+        // Actually, the original logic showed gate by default. 
+        // Let's check if we should show gate or if we are already "logged in" (not implemented in original, so just show gate)
+        document.getElementById('gate').style.display = 'block';
+      }
+    }
+
     // Check if disclaimer has been accepted
     function checkDisclaimerAccepted() {
       return localStorage.getItem('disclaimerAccepted') === 'true';
@@ -648,14 +755,22 @@
     function acceptDisclaimer() {
       localStorage.setItem('disclaimerAccepted', 'true');
       document.getElementById('disclaimerModal').style.display = 'none';
+      document.getElementById('gate').style.display = 'block';
     }
 
-    // Show disclaimer on page load if not accepted before
-    window.addEventListener('load', function() {
-      if (!checkDisclaimerAccepted()) {
-        document.getElementById('disclaimerModal').style.display = 'block';
-      }
+    // Original window.onload logic is replaced by startApp called after video
+    // But we need to handle the case where video might not autoplay or something?
+    // The video is the entry point now.
+
+    // Ensure video plays
+    window.addEventListener('load', function () {
+      introVideo.play().catch(e => {
+        console.log("Autoplay prevented:", e);
+        // If autoplay fails, we might want to show a "Play" button or just let them skip.
+        // For now, the Skip button is always there.
+      });
     });
+
 
     function checkPW() {
       const input = document.getElementById('pwInput').value;
@@ -672,29 +787,30 @@
         }, 10);
       }
     }
-    
+
     function openAbout() {
       document.getElementById('aboutModal').style.display = 'block';
     }
-    
+
     function closeAbout() {
       document.getElementById('aboutModal').style.display = 'none';
     }
-    
+
     // Close modal when clicking outside of it
-    window.onclick = function(event) {
+    window.onclick = function (event) {
       const aboutModal = document.getElementById('aboutModal');
       if (event.target == aboutModal) {
         aboutModal.style.display = 'none';
       }
     }
-    
+
     // Allow Enter key for password
-    document.getElementById('pwInput').addEventListener('keypress', function(e) {
+    document.getElementById('pwInput').addEventListener('keypress', function (e) {
       if (e.key === 'Enter') {
         checkPW();
       }
     });
   </script>
 </body>
+
 </html>
